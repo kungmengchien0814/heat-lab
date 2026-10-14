@@ -282,8 +282,8 @@ footer{margin-top:28px;color:var(--muted);font-size:12px;border-top:1px solid va
   </div>
   <details class="teach"><summary>挑戰題</summary>
     <ul>
-      <li>保溫杯對決：按「最快」跑到 2 小時，玻璃杯約 60°C、保麗龍杯約 71°C（畫面左上角有即時讀數）。把保麗龍換成鋁會怎樣？</li>
-      <li>雙層玻璃窗：左邊冰、右邊熱，中間一層玻璃和兩層玻璃夾空氣，哪個比較擋熱？</li>
+      <li>保溫杯對決：按「最快」跑到 2 小時，兩杯差幾度（看畫面左上角的讀數）？打開「風扇」再跑一次，哪一杯變最多？</li>
+      <li>雙層玻璃窗：左邊是 0°C 的室外，右邊是室內。比比看單層窗和雙層窗的玻璃內側溫度（看左上角讀數），冬天哪一種窗戶比較會起霧？</li>
       <li>關掉「熱空氣上升」再看一次，畫面差在哪？那就是自然對流的效果。</li>
     </ul>
   </details>
@@ -751,11 +751,11 @@ if (typeof module !== 'undefined' && module.exports) module.exports = { createSi
       return [{ x: 24, y: 19, n: '銅棒' }, { x: 24, y: 30, n: '木棒' }];
     },
     wall() {
-      sand.rect(0, 0, 8, H, 'ice'); sand.rect(64, 0, 8, H, 'soup');
-      sand.rect(8, 23, 56, 2, 'foam');
-      sand.rect(35, 0, 2, 23, 'glass');
-      sand.rect(32, 25, 2, 23, 'glass'); sand.rect(38, 25, 2, 23, 'glass');
-      return [{ x: 40, y: 12, n: '單層窗內側' }, { x: 41, y: 36, n: '雙層窗內側' }];
+      sand.rect(0, 0, 20, H, 'ice');                 // outdoor at 0 C
+      sand.rect(20, 23, 52, 2, 'foam');              // divider between the two windows
+      sand.rect(20, 0, 2, 23, 'glass');              // top: single pane
+      sand.rect(20, 25, 2, 23, 'glass'); sand.rect(26, 25, 2, 23, 'glass'); // bottom: double pane, 2 cm air gap
+      return [{ x: 21, y: 12, n: '單層窗內側' }, { x: 27, y: 36, n: '雙層窗內側' }];
     },
   };
   function loadPreset(n) { sand.mat.fill(0); sandV.probes = PRESETS[n]() || []; sand.reset(); sandV.invalidate(); }
